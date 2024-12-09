@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+service ReservationService {
+  rpc GetReservationById (ReservationByIdRequest) returns (ReservationResponse);
+}
+
+message ReservationByIdRequest {
+  int64 reservation_id = 1;
+}
+
+message ReservationResponse {
+  int64 id = 1;
+  int64 userId = 2;
+  int64 chambreId = 3;
+  string date_debut = 4;
+  string date_fin = 5;
+  float montant_total = 6;
+  User user = 7;
+  Chambre chambre = 8;
+
+}
+
+message User {
+  string nom = 1;
+  string prenom = 2;
+  string email = 3;
+  string telephone =4;
+  string adresse = 5;
+  string cni = 6;
+}
+
+message Chambre {
+  string numero = 1;
+  float prix = 3;
+}

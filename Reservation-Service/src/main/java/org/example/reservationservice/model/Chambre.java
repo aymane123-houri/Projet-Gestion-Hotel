@@ -11,9 +11,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Chambre {
-
-private Long numero;
-private String type_chambre ;
-private Float prix ;
-private Boolean disponible ;
+    private String  numero;
+    private int nombre_lits;
+    private float prix;
+    private String image;
+    private String description;
+    private Boolean disponible;
 }
