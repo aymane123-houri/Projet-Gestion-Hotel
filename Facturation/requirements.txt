@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+motor
+pymongo
+pydantic
+SQLAlchemy
+graphene
+starlette-graphene3
+requests
+anyio~=4.6.2.post1
+certifi
+Jinja2
+typing_extensions
+py_eureka_client
+grpcio
+protobuf

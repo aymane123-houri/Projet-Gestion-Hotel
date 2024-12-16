@@ -3,8 +3,6 @@ package org.example.userservice.controller;
 import org.example.userservice.entity.User;
 import org.example.userservice.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -24,42 +22,44 @@ public class userController {
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        User user1 = userService.create_user(user);
-        return ResponseEntity.ok(user1);
+        return ResponseEntity.ok(userService.create_user(user));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@RequestBody User user,@PathVariable Long id) {
-        User user1 = userService.update_user(user,id);
-        return ResponseEntity.ok(user1);
+        return ResponseEntity.ok(userService.update_user(user,id));
     }
 
      @DeleteMapping("/{id}")
-    public void deleteUser(Long id) {
+    public void deleteUser(@PathVariable Long id) {
         userService.delete_user(id);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(Long id) {
-        User user1 = userService.get_user(id);
-        return ResponseEntity.ok(user1);
+    public ResponseEntity<User> getUser(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.get_user(id));
     }
 
     @GetMapping
     public ResponseEntity<List<User>> getAllUser() {
-        List<User> users = userService.getAll_users();
-        return ResponseEntity.ok(users);
+        return ResponseEntity.ok(userService.getAll_users());
     }
 
     @GetMapping("/email/{email}")
-    public ResponseEntity<Map<String,String>> getUserByEmail(String email) {
-        User user= userService.get_user_by_email(email);
+    public ResponseEntity<Map<String,String>> getUserByEmail(@PathVariable String email) {
+        /*User user = userService.get_user_by_email(email);
         if(user!=null){
-            Map<String,String> info_User = new HashMap<>();
-            info_User.put("email",user.getEmail());
-            info_User.put("password",user.getPassword());
-            info_User.put("scope",user.getRole());
-            return ResponseEntity.ok(info_User);
+            return ResponseEntity.ok(user);
+        }
+        return ResponseEntity.notFound().build();*/
+
+        User user = userService.get_user_by_email(email);
+        if (user!=null) {
+            Map<String, String> infos_user = new HashMap<>();
+
+            infos_user.put("email", user.getEmail());
+            infos_user.put("password", user.getPassword());
+            return ResponseEntity.ok(infos_user);
         }
         return ResponseEntity.notFound().build();
 

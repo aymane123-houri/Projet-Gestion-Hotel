@@ -10,14 +10,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class User {
-
-    private Long id;
     private String nom;
     private String prenom ;
     private String email ;
-    private Long telephone ;
+    private String  telephone ;
     private String adresse ;
-    private String role;
-    private String CIN;
+    private String cni;
     private String password;
 }

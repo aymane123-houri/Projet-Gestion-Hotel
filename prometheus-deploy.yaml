@@ -1,0 +1,92 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 10s
+      evaluation_interval: 10s
+    scrape_configs:
+      - job_name: 'user_service'
+        metrics_path: '/actuator/prometheus'
+        scrape_interval: 5s
+        static_configs:
+          - targets: ['user-service:8081']
+            labels:
+              application: 'user Service'
+      - job_name: 'chambre_service'
+        metrics_path: '/actuator/prometheus'
+        scrape_interval: 5s
+        static_configs:
+          - targets: ['chambre-service:5000']
+            labels:
+              application: 'Chambre Service'
+
+      - job_name: 'reservation_service'
+        metrics_path: '/actuator/prometheus'
+        scrape_interval: 5s
+        static_configs:
+          - targets: ['reservation-service:8083']
+            labels:
+              application: 'Reservation Service'
+    
+      - job_name: 'facturation_service'
+        metrics_path: '/actuator/prometheus'
+        scrape_interval: 5s
+        static_configs:
+          - targets: ['facturation-service:8000']
+            labels:
+              application: 'Facturation Service'
+    
+      - job_name: 'receptionist_service'
+        metrics_path: '/actuator/prometheus'
+        scrape_interval: 5s
+        static_configs:
+          - targets: ['receptionist-service:8085']
+            labels:
+              application: 'Receptionist Service'
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus-service
+  template:
+    metadata:
+      labels:
+        app: prometheus-service
+    spec:
+      containers:
+        - name: prometheus
+          image: prom/prometheus
+          ports:
+            - containerPort: 9090
+          volumeMounts:
+            - name: prometheus-config
+              mountPath: /etc/prometheus/prometheus.yml
+              subPath: prometheus.yml
+      volumes:
+        - name: prometheus-config
+          configMap:
+            name: prometheus-config
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-service
+spec:
+  selector:
+    app: prometheus-service
+  ports:
+    - protocol: TCP
+      port: 5050
+      targetPort: 9090
+  type: LoadBalancer
