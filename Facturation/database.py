@@ -1,8 +1,8 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 
 # URL de connexion MongoDB
-MONGO_URL = "mongodb://localhost:27017"
-
+#MONGO_URL = "mongodb://localhost:27017"
+MONGO_URL = "mongodb://mongodb-service:27017"
 # Connexion au client MongoDB avec motor
 client = AsyncIOMotorClient(MONGO_URL)
 

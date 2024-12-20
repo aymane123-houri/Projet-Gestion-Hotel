@@ -115,6 +115,7 @@ public class Chambre {
         this.type_lits = type_lits;
     }
 
+
     public Chambre() {
     }
 }

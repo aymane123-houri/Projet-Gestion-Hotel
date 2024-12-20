@@ -24,11 +24,11 @@ public class ReceptionistService {
     public List<Receptionist> getAll_receptionist() {
         return receptionistRepository.findAll();
     }
-    public Receptionist get_receptionist(Long id) {
+    public Receptionist get_receptionist(String id) {
         return receptionistRepository.findById(id).orElse(null);
     }
 
-    public Receptionist update_receptionist(Receptionist receptionist, Long id) {
+    public Receptionist update_receptionist(Receptionist receptionist, String id) {
         return receptionistRepository.findById(id).map(receptionist1 -> {
             receptionist1.setNom(receptionist.getNom());
             receptionist1.setPrenom(receptionist.getPrenom());
@@ -45,7 +45,7 @@ public class ReceptionistService {
 
 
 
-    public void delete_receptionist(Long id) {
+    public void delete_receptionist(String id) {
         receptionistRepository.deleteById(id);
     }
 

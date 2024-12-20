@@ -14,22 +14,15 @@ spec:
     spec:
       containers:
         - name: chambre-service
-          image: ayhouri/chambre-service
-          imagePullPolicy: Always
+          image: chambre-service:latest
+          imagePullPolicy: Never
           ports:
             - containerPort: 5000
           env:
             - name: DISCOVERY_SERVICE_URL
               value: http://discovery-service.default.svc.cluster.local:8761/eureka
-            - name: CONFIG_SERVICE_URL
-              value: http://config-service.default.svc.cluster.local:9999
-          readinessProbe:
-            httpGet:
-              path: /actuator/health
-              port: 5000
-            initialDelaySeconds: 5
-            periodSeconds: 5
-            failureThreshold: 3
+
+
 
 ---
 ---

@@ -13,10 +13,10 @@ class Chambre(db.Model):
     prix = db.Column(db.Float, nullable=False)
     image = db.Column(db.LargeBinary)
     description = db.Column(db.String(1000))
-    disponible = db.Column(db.Boolean, default=True)
     adulte_capacite=db.Column(db.Integer, nullable=False)
     enfant_capacite=db.Column(db.Integer, nullable=False)
     type_lits = db.Column(db.String(100), nullable=False)
+    disponible = db.Column(db.Boolean, default=True)
 
 
     def __init__(self, numero, nombre_lits, prix, image, description, adulte_capacite,enfant_capacite,type_lits, disponible=True):
@@ -25,10 +25,11 @@ class Chambre(db.Model):
         self.prix = prix
         self.image = image
         self.description = description
-        self.disponible = disponible
         self.adulte_capacite=adulte_capacite
         self.enfant_capacite=enfant_capacite
         self.type_lits = type_lits
+        self.disponible = disponible
+
 
 
     def to_dict(self):
@@ -39,10 +40,10 @@ class Chambre(db.Model):
             "prix": self.prix,
             "image": self.image,
             "description": self.description,
-            "disponible": self.disponible,
             "adulte_capacite":self.adulte_capacite,
-            "enfant_capacite":self.enfant_capacite
+            "enfant_capacite":self.enfant_capacite,
             "type_lits": self.type_lits,
+            "disponible": self.disponible,
         }"""
        image_data = None
        if self.image:
@@ -55,10 +56,10 @@ class Chambre(db.Model):
            "prix": self.prix,
            "image": image_data,  # Image sous forme de chaîne base64
            "description": self.description,
-           "disponible": self.disponible,
            "adulte_capacite":self.adulte_capacite,
            "enfant_capacite":self.enfant_capacite,
            "type_lits":self.type_lits,
+           "disponible": self.disponible,
 
        }
 

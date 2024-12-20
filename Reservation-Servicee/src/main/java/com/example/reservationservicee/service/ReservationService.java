@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ReservationService {
-    private ReservationRepository reservationRepository;
+    private final ReservationRepository reservationRepository;
     private ChambreFeignClient chambreFeignClient;
     private UserFeignClient userFeignClient;
 
@@ -51,6 +51,7 @@ public class ReservationService {
         return  reservation;
     }
 
+    @Transactional
     public Reservation update_reservation(Reservation reservation, Long id) {
         return reservationRepository.findById(id).map(reservation1 -> {
                     reservation1.setDate_debut(reservation.getDate_debut());
@@ -65,7 +66,7 @@ public class ReservationService {
     }
 
 
-
+    @Transactional
     public void delete_reservation(Long id) {
         reservationRepository.deleteById(id);
     }

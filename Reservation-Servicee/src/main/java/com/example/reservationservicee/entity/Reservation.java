@@ -12,10 +12,15 @@ import lombok.Setter;
 import java.util.Date;
 
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     private Long id;
     private Long user_id;
     private Long chambre_id;
@@ -28,8 +33,7 @@ public class Reservation {
     private Chambre chambre;
 
 
-
-    public Reservation(Long id, Long user_id, Long chambre_id, Date date_debut, Date date_fin, double montant_total, User user, Chambre chambre) {
+    /*public Reservation(Long id, Long user_id, Long chambre_id, Date date_debut, Date date_fin, double montant_total, User user, Chambre chambre) {
         this.id = id;
         this.user_id = user_id;
         this.chambre_id = chambre_id;
@@ -106,5 +110,5 @@ public class Reservation {
 
     public void setChambre(Chambre chambre) {
         this.chambre = chambre;
-    }
+    }*/
 }

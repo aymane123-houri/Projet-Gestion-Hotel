@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/Administrator")
 public class ReceptionistController {
@@ -27,17 +27,17 @@ public class ReceptionistController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Receptionist> updateReceptionist(@RequestBody Receptionist receptionist,@PathVariable Long id) {
+    public ResponseEntity<Receptionist> updateReceptionist(@RequestBody Receptionist receptionist,@PathVariable String id) {
         return ResponseEntity.ok(receptionistService.update_receptionist(receptionist,id));
     }
 
      @DeleteMapping("/{id}")
-    public void deleteReceptionist(@PathVariable Long id) {
+    public void deleteReceptionist(@PathVariable String id) {
         receptionistService.delete_receptionist(id);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Receptionist> getReceptionist(@PathVariable Long id) {
+    public ResponseEntity<Receptionist> getReceptionist(@PathVariable String id) {
         return ResponseEntity.ok(receptionistService.get_receptionist(id));
     }
 

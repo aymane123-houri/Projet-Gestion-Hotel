@@ -1,10 +1,10 @@
-package com.example.reservationservicee;
+package com.example.notificationservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ReservationServiceeApplicationTests {
+class ConfirmationConfirmationNotificationServiceApplicationTests {
 
     @Test
     void contextLoads() {

@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: ayhouri/mysql
+          image: mysql
           env:
             - name: MYSQL_ALLOW_EMPTY_PASSWORD
               value: 'yes'

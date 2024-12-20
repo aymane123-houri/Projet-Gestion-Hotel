@@ -79,9 +79,9 @@ def add_chambre():
             image=image_data,
             description=data['description'],
             disponible=data.get('disponible', True),
-            adulte_capacite=data.get['adulte_capacite'],
-            enfant_capacite=data.get['enfant_capacite'],
-            type_lits=data.get['type_lits'],
+            adulte_capacite=data.get('adulte_capacite'),
+            enfant_capacite=data.get('enfant_capacite'),
+            type_lits=data.get('type_lits'),
         )
 
         # Ajout à la base de données
