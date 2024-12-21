@@ -8,10 +8,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -24,7 +24,7 @@ import java.util.List;
 @WebMvcTest(ReservationController.class)
 class ReservationControllerTest {
 
-    @Mock
+    @MockBean
     private ReservationService reservationService;
 
     @Autowired
@@ -43,7 +43,7 @@ class ReservationControllerTest {
                 new Reservation(2L, 2L, 2L, new Date(), new Date(), 800.0, null, null)
         );
 
-        /*this.chambresDisponibles = List.of(
+       /*this.chambresDisponibles = List.of(
                 new Chambre(1L, "101", 2, 300, "image1.png", "Test 1", true, 3, 2, "double"),
                 new Chambre(2L, "102", 3, 400, "image2.png", "Test 2", true, 4, 3, "suite")
         );*/
