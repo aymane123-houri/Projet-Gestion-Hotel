@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: chambre-service
-          image: chambre-service:latest
-          imagePullPolicy: Never
+          image: ayhouri/chambre-service:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000
           env:
