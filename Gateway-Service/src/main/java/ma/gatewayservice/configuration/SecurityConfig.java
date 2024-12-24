@@ -15,10 +15,13 @@ public class SecurityConfig {
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         http
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
+                .authorizeExchange(auth -> auth.pathMatchers("/actuator/health").permitAll())
                 .authorizeExchange(auth -> auth.pathMatchers("/user-service/Utilisateurs/email/{email}").permitAll())
                 .authorizeExchange(auth -> auth.pathMatchers("/receptionist-service/Administrator/email/{email}").permitAll())
                 .authorizeExchange(auth -> auth.anyExchange().authenticated())
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> {}));
         return http.build();
     }
+
+
 }

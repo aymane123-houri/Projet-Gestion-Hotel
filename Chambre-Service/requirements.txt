@@ -4,3 +4,4 @@ Flask-SQLAlchemy
 Flask-Migrate
 py_eureka_client
 pymysql
+prometheus_client

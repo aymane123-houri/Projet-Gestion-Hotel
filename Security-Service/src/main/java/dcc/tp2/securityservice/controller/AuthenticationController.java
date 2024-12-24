@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@CrossOrigin("http://localhost:4200/")
+//@CrossOrigin("http://localhost:4200/")
 public class AuthenticationController {
     private final GenerateTokenService generateJWTService;
 

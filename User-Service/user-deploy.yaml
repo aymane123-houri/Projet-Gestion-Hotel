@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: user-service
-          image: ayhouri/user-service
-          imagePullPolicy: Always
+          image: user-service
+          imagePullPolicy: Never
           ports:
             - containerPort: 8081
           env:

@@ -52,7 +52,7 @@ class Chambre(db.Model):
        return {
            "id": self.id,
            "numero": self.numero,
-           "type_lits": self.type_lits,
+           "nombre_lits": self.nombre_lits,
            "prix": self.prix,
            "image": image_data,  # Image sous forme de chaîne base64
            "description": self.description,

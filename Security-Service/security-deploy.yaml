@@ -14,19 +14,17 @@ spec:
     spec:
       containers:
         - name: security-service
-          image: ayhouri/security-service
-          imagePullPolicy: Always
+          image: security-service
+          imagePullPolicy: Never
           ports:
-            - containerPort: 9999
+            - containerPort: 9996
           env:
             - name: DISCOVERY_SERVICE_URL
               value: http://discovery-service.default.svc.cluster.local:8761/eureka
-            - name: CONFIG_SERVICE_URL
-              value: http://config-service.default.svc.cluster.local:9999
           readinessProbe:
             httpGet:
               path: /actuator/health
-              port: 9999
+              port: 9996
             initialDelaySeconds: 5
             periodSeconds: 5
             failureThreshold: 3
@@ -42,6 +40,6 @@ spec:
     app: security-service
   ports:
     - protocol: TCP
-      port: 9999
-      targetPort: 9999
+      port: 9996
+      targetPort: 9996
   type: LoadBalancer

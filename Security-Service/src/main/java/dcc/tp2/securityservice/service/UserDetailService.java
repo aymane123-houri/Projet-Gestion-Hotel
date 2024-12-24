@@ -2,6 +2,7 @@ package dcc.tp2.securityservice.service;
 
 import dcc.tp2.securityservice.feignClient.AdministratorFeign;
 import dcc.tp2.securityservice.feignClient.UserFeignClient;
+import dcc.tp2.securityservice.model.Administrator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -44,32 +45,24 @@ public class UserDetailService implements UserDetailsService {
         String email = parts[0];
         String userType = parts[1];
         System.out.println("DANS USER DETAIL ");
-        Map<String, String> user_infos = new HashMap<>();
+        Administrator administrator = new Administrator();
 
         if (userType.equals("Receptionist")) {
             System.out.println("YES Receptionist");
-            user_infos = administratorFeign.getAdministratorCredentials(email);
+            administrator = administratorFeign.getAdministrator(email);
 
         }
 
         if (userType.equals("Admin")) {
             System.out.println("YES Admin");
-            user_infos = administratorFeign.getAdministratorCredentials(email);
-            System.out.println(user_infos);
-        }
-
-
-        if (userType.equals("null")) {
-            user_infos = userFeignClient.getUserCredentials(email);
-            Collection<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority("Guest"));
-            return new User(user_infos.get("email"), "{noop}" + user_infos.get("password"), authorities);
+            administrator = administratorFeign.getAdministrator(email);
+            System.out.println(administrator);
         }
 
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(user_infos.get("scope")));
+        authorities.add(new SimpleGrantedAuthority(administrator.getRole()));
 
-        return new User(user_infos.get("email"), "{noop}" + user_infos.get("password"), authorities);
+        return new User(administrator.getNom()+" "+administrator.getPrenom() , "{noop}" + administrator.getPassword(), authorities);
     }
 
 }

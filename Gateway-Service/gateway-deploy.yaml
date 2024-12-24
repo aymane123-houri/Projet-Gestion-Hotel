@@ -17,7 +17,7 @@ spec:
           image: gateway-service
           imagePullPolicy: Never
           ports:
-            - containerPort: 8889
+            - containerPort: 8888
           env:
             - name: DISCOVERY_SERVICE_URL
               value: http://discovery-service.default.svc.cluster.local:8761/eureka
@@ -25,7 +25,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /actuator/health
-              port: 8889
+              port: 8888
             initialDelaySeconds: 5
             periodSeconds: 5
             failureThreshold: 3
@@ -41,6 +41,6 @@ spec:
     app: gateway-service
   ports:
     - protocol: TCP
-      port: 8889
-      targetPort: 8889
+      port: 8888
+      targetPort: 8888
   type: LoadBalancer

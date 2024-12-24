@@ -21,7 +21,7 @@
         <module>Security-Service</module>
         <module>Receptionist-Service</module>
         <module>User-Service</module>
-        <module>Reservation-Service</module>
+        <module>Reservation-Servicee</module>
     </modules>
 
 </project>

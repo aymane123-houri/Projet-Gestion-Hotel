@@ -52,7 +52,7 @@ public class SecurityConfig {
                 .sessionManagement(sess-> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login/**","/RefreshToken/**").permitAll()
+                        .requestMatchers("/login/**","/RefreshToken/**", "/actuator/health").permitAll()
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> {}))

@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "notification")
+@Document(collection = "receptionist")
 public class Receptionist {
 
     private String _id;

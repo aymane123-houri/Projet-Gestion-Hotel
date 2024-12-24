@@ -23,7 +23,7 @@ public class EmailService {
 
         helper.setTo(notification.getReservation().getUser().getEmail());
 
-        helper.setSubject("Confirmation de l'emprunt de votre livre");
+        helper.setSubject("Confirmation de Reservation de votre chambre");
 
         helper.setText( new Messages().getConfirmationMessage(notification.getReservation(), notification.getReservation().getUser(), notification.getReservation().getChambre()));
 

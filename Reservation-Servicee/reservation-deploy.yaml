@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: reservation-service
-          image: ayhouri/reservation-service
-          imagePullPolicy: Always
+          image: reservation-service
+          imagePullPolicy: Never
           ports:
             - containerPort: 8087
           env:

@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @Service
-@FeignClient(name = "User-Service", url = "http://localhost:8081")
+//@FeignClient(name = "User-Service", url = "http://localhost:8081")
+@FeignClient(name = "User-Service", url = "http://user-service:8081")
 public interface UserFeignClient {
     @GetMapping("/Utilisateurs")
     List<User> getAllUsers();

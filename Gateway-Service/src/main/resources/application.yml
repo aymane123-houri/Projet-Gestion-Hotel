@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: chambre-service
+          uri: http://chambre-service:5000
+          predicates:
+            - Path=/chambre-service/**

@@ -10,14 +10,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Map;
 
-@FeignClient(name = "receptionist-service" , url = "http://localhost:8085")
+//@FeignClient(name = "receptionist-service" , url = "http://localhost:8085")
+@FeignClient(name = "receptionist-service" , url = "http://receptionist-service:8085")
 public interface AdministratorFeign {
 
         @GetMapping("/Administrator/email/{email}")
         @CircuitBreaker(name = "receptionist-service", fallbackMethod = "fallbackMethod")
         @Retry(name = "receptionist-service", fallbackMethod = "fallbackMethod")
         @RateLimiter(name = "receptionist-service", fallbackMethod = "fallbackMethod")
-        Map<String,String> getAdministratorCredentials(@PathVariable String email);
+        Administrator getAdministrator(@PathVariable String email);
 
         default Administrator fallbackMethod(String email, Throwable throwable){
             System.err.println("Fallback for email: " + email + ", exception: " + throwable.getMessage());

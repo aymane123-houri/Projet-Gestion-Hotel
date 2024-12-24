@@ -19,5 +19,5 @@ public class Administrator {
     private String password;
     private String telephone;
     private String cni;
-    private Role role;
+    private String role;
 }

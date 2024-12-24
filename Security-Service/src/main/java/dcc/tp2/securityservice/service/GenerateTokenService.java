@@ -90,7 +90,8 @@ public class GenerateTokenService {
                     .issuer(authenticate.getName())
                     .subject(authenticate.getName())
                     .issuedAt(instant)
-                    .expiresAt(instant.plus(2, ChronoUnit.MINUTES))
+                    //.expiresAt(instant.plus(2, ChronoUnit.MINUTES))
+                    .expiresAt(instant.plus(30, ChronoUnit.DAYS))
                     .claim("name",authenticate.getName())
                     .claim("scope",scopes)
                     .build();

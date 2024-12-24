@@ -13,7 +13,8 @@ public class Messages {
                 + "💬 Si vous avez des questions ou besoin de plus d'informations, notre équipe est à votre disposition. Vous pouvez nous contacter à tout moment à l'adresse suivante : libsmart66@gmail.com.\n\n"
                 + "Merci de nous avoir choisis pour votre séjour. Nous vous souhaitons une excellente expérience !\n\n"
                 + "Cordialement,\n"
-                + "L'équipe de Hotelier \uD83D\uDE0A";
+                + "L'équipe de Royal Resort 🏨 \uD83D\uDE0A";
+
     }
 
 
