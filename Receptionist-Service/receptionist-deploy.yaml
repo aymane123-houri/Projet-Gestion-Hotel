@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: receptionist-service
-          image: receptionist-service
+          image: ayhouri/receptionist-service
           imagePullPolicy: Never
           ports:
             - containerPort: 8085

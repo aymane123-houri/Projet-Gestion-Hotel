@@ -18,6 +18,9 @@ public class SecurityConfig {
                 .authorizeExchange(auth -> auth.pathMatchers("/actuator/health").permitAll())
                 .authorizeExchange(auth -> auth.pathMatchers("/user-service/Utilisateurs/email/{email}").permitAll())
                 .authorizeExchange(auth -> auth.pathMatchers("/receptionist-service/Administrator/email/{email}").permitAll())
+                /*.authorizeExchange(auth -> auth.pathMatchers("/chambre-service/chambres/**").hasAuthority("SCOPE_Admin"))
+                .authorizeExchange(auth -> auth.pathMatchers("/user-service/Utilisateurs/**").hasAuthority("SCOPE_Admin"))
+                .authorizeExchange(auth -> auth.pathMatchers("/Receptionist-service/Receptionist/**").hasAuthority("SCOPE_Admin"))*/
                 .authorizeExchange(auth -> auth.anyExchange().authenticated())
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> {}));
         return http.build();
