@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: gateway-service
-          image: ayhouri/gateway-service
+          image: gateway-service
           imagePullPolicy: Never
           ports:
             - containerPort: 8888

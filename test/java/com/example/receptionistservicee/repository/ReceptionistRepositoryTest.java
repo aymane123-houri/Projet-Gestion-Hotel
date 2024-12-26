@@ -5,12 +5,13 @@ import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.*;
-@DataJpaTest
+@DataMongoTest
 @ActiveProfiles("test")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class ReceptionistRepositoryTest {
@@ -27,12 +28,25 @@ class ReceptionistRepositoryTest {
     }
     @Test
     void findByEmail() {
-        String email="houri@gmail.com";
-        Receptionist receptionist  = new Receptionist("null","user1","user1","user1@gmail.com","1234","0666666","Rue malik","L1234","Admin");
+        // Préparer l'email à tester
+        String email = "user1@gmail.com";
 
-        Receptionist result=receptionistRepository.findByEmail(email);
+        // Créer un nouvel objet Receptionist sans l'ID pour la comparaison
+        Receptionist expectedReceptionist = new Receptionist("null", "user1", "user1", email, "1234", "0666666", "Rue malik", "L1234", "Admin");
 
+        // Sauvegarder dans la base de données
+        receptionistRepository.save(expectedReceptionist);
+
+        // Récupérer le receptionist par email
+        Receptionist result = receptionistRepository.findByEmail(email);
+
+        // Vérifier que le résultat n'est pas nul
         AssertionsForClassTypes.assertThat(result).isNotNull();
-        AssertionsForClassTypes.assertThat(result).usingRecursiveComparison().ignoringFields("id").isEqualTo(receptionist);
+
+        // Comparer l'objet retourné avec l'objet attendu en ignorant l'ID
+        AssertionsForClassTypes.assertThat(result).usingRecursiveComparison()
+                .ignoringFields("id") // Ignorer le champ ID, qui est généré automatiquement
+                .isEqualTo(expectedReceptionist);
     }
+
 }
